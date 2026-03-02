@@ -10,3 +10,6 @@ Controllers:
 - Return formatted responses (JSON)
 
 They do not contain business or persistence logic.
+
+## Current Controllers
+- `ClientController` – Handles client-related HTTP requests
