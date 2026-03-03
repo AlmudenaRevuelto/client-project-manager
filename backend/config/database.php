@@ -2,16 +2,16 @@
 
 class Database
 {
-    private string $host = 'localhost';
+    private string $host = 'db';
     private string $dbName = 'client_project_manager';
     private string $username = 'root';
-    private string $password = '';
+    private string $password = 'root';
 
     public function connect(): PDO
     {
         try {
             $connection = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbName};charset=utf8",
+                "mysql:host={$this->host};port=3306;dbname={$this->dbName};charset=utf8mb4",
                 $this->username,
                 $this->password
             );
