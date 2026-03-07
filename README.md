@@ -43,3 +43,15 @@ Tables:
 - description
 - status
 - created_at
+
+### Client Endpoints
+GET /clients  
+GET /clients/{id}  
+POST /clients  
+PUT /clients/{id}  
+DELETE /clients/{id}
+
+### Project Endpoints
+GET /projects  
+POST /projects  
+GET /clients/{id}/projects

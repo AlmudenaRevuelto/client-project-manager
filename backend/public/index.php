@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../src/Controllers/ClientController.php';
+require_once __DIR__ . '/../src/Controllers/ProjectController.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -9,6 +10,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = rtrim($uri, '/') ?: '/';
 
 $controller = new ClientController();
+$projectController = new ProjectController();
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,12 @@ if (preg_match('#^/clients/(\d+)$#', $uri, $matches) && $method === 'DELETE') {
 if (preg_match('#^/clients/(\d+)$#', $uri, $matches) && $method === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true) ?? [];
     $controller->update((int) $matches[1], $data);
+    return;
+}
+
+// GET /clients/{id}/projects
+if (preg_match('#^/clients/(\d+)/projects$#', $uri, $matches) && $method === 'GET') {
+    $projectController->listByClient((int) $matches[1]);
     return;
 }
 

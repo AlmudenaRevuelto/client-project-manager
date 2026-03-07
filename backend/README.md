@@ -26,3 +26,10 @@ All HTTP requests are handled through `public/index.php`, acting as a front cont
 | POST | /clients | Create client |
 | PUT | /clients/{id} | Update client |
 | DELETE | /clients/{id} | Delete client |
+
+## Project Endpoints
+| Method | Endpoint | Description |
+|------|------|------|
+| GET | /projects | List all projects |
+| POST | /projects | Create project |
+| GET | /clients/{id}/projects | List projects for a client |
