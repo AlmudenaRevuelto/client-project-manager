@@ -31,6 +31,20 @@ services:
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     networks:
       - app-network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: client_manager_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - app-network
 
 volumes:
   db_data:
