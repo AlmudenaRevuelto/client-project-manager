@@ -25,3 +25,21 @@ The backend currently exposes basic client management endpoints using a custom P
 - Dockerized environment
 - MySQL persistence
 - Postman collection included
+
+## Database
+The project uses a MySQL database initialized automatically via Docker.
+
+Tables:
+### clients
+- id
+- name
+- email
+- created_at
+
+### projects
+- id
+- client_id
+- name
+- description
+- status
+- created_at
