@@ -56,6 +56,19 @@ if (preg_match('#^/clients/(\d+)/projects$#', $uri, $matches) && $method === 'GE
     return;
 }
 
+// GET /projects
+if ($uri === '/projects' && $method === 'GET') {
+    $projectController->list();
+    return;
+}
+
+// POST /projects
+if ($uri === '/projects' && $method === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true) ?? [];
+    $projectController->create($data);
+    return;
+}
+
 // Fallback
 http_response_code(404);
 header('Content-Type: application/json');

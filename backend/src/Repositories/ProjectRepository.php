@@ -25,4 +25,28 @@ class ProjectRepository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findAllWithClient(): array
+    {
+        $query = "SELECT p.id, p.name, p.status, p.created_at, c.id AS client_id, c.name AS client_name FROM projects p JOIN clients c ON p.client_id = c.id ORDER BY p.id";
+
+        $stmt = $this->connection->query($query);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create(array $data): int
+    {
+        $query = "INSERT INTO projects (client_id, name, status) VALUES (:client_id, :name, :status)";
+
+        $stmt = $this->connection->prepare($query);
+
+        $stmt->execute([
+            'client_id' => $data['client_id'],
+            'name' => $data['name'],
+            'status' => $data['status'] ?? 'active'
+        ]);
+
+        return (int)$this->connection->lastInsertId();
+    }
 }

@@ -31,4 +31,35 @@ class ProjectController
         }
     }
 
+    public function list(): void
+    {
+        $projects = $this->projectService->getAllProjects();
+
+        header('Content-Type: application/json');
+
+        echo json_encode($projects);
+    }
+
+    public function create(array $data): void
+    {
+        try {
+
+            $id = $this->projectService->createProject($data);
+
+            http_response_code(201);
+
+            echo json_encode([
+                'message' => 'Project created',
+                'id' => $id
+            ]);
+
+        } catch (InvalidArgumentException $e) {
+
+            http_response_code(400);
+
+            echo json_encode([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
 }
