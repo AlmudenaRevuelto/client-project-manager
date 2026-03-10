@@ -1,57 +1,187 @@
-# Client & Project Manager
+# Developer Project Portfolio
 
-Full-stack web application to manage clients and their projects.
+Personal developer portfolio built with **PHP, Docker, MySQL and Twig** following an **MVC architecture**.
 
-## Tech Stack
-- PHP
-- MySQL
-- JavaScript
-- HTML & CSS
+This project acts as a **central hub for showcasing software projects**, allowing them to be organised, described and linked to their respective repositories or live demos.
 
-## Features
-- CRUD for clients
-- CRUD for projects
-- Client-project relationship
+The goal of this project is both:
 
-## Project Structure
-Backend and frontend are separated for better maintainability.
+* to serve as a **technical portfolio**
+* and to demonstrate **backend architecture, API design and containerised development**
 
-## Backend Status
-The backend currently exposes basic client management endpoints using a custom PHP router and a layered architecture (Controller, Service, Repository).
+---
 
-### API Features
-- Full CRUD for Clients
-- REST API architecture
-- Dockerized environment
-- MySQL persistence
-- Postman collection included
+# Project Overview
 
-## Database
-The project uses a MySQL database initialized automatically via Docker.
+This application provides a system where **projects can be registered, managed and displayed**.
 
-Tables:
-### clients
-- id
-- name
-- email
-- created_at
+Each project can contain information such as:
 
-### projects
-- id
-- client_id
-- name
-- description
-- status
-- created_at
+* name
+* description
+* programming language
+* framework
+* GitHub repository
+* live demo link
+* status
 
-### Client Endpoints
-GET /clients  
-GET /clients/{id}  
-POST /clients  
-PUT /clients/{id}  
-DELETE /clients/{id}
+The frontend renders project information using **Twig templates**, while the backend exposes a **REST API** that manages all data.
 
-### Project Endpoints
-GET /projects  
-POST /projects  
-GET /clients/{id}/projects
+---
+
+# Tech Stack
+
+### Backend
+
+* PHP
+* REST API
+* MVC architecture
+* MySQL
+* PDO
+
+### Frontend
+
+* Twig
+* HTML
+* CSS
+* Vanilla JavaScript
+
+### Infrastructure
+
+* Docker
+* Apache
+* MySQL
+* phpMyAdmin
+
+### Tools
+
+* Postman (API testing)
+* Git / GitHub
+
+---
+
+# Architecture
+
+The project is divided into two main layers:
+
+```
+frontend
+   ↓
+Backend API
+   ↓
+Database
+```
+
+### Backend
+
+```
+backend
+ ├── public
+ ├── src
+ │   ├── Controllers
+ │   ├── Services
+ │   ├── Repositories
+ │   └── Models
+```
+
+Responsibilities:
+
+* Controllers → handle HTTP requests
+* Services → business logic
+* Repositories → database access
+* Models → domain entities
+
+---
+
+### Frontend
+
+```
+frontend
+ ├── public
+ ├── src
+ │   └── Controller
+ ├── templates
+ └── assets
+```
+
+Responsibilities:
+
+* Controllers → fetch data from API
+* Twig templates → render views
+* CSS / JS → presentation and behaviour
+
+---
+
+# Running the Project
+
+Requirements:
+
+* Docker
+* Docker Compose
+
+Start the environment:
+
+```
+docker compose up --build
+```
+
+Application will be available at:
+
+```
+http://localhost:8000
+```
+
+---
+
+# API Endpoints
+
+Example endpoints available in the backend API:
+
+```
+GET    /api/clients
+POST   /api/clients
+GET    /api/projects
+POST   /api/projects
+PUT    /api/projects/{id}
+DELETE /api/projects/{id}
+```
+
+The API can be tested using **Postman**.
+
+---
+
+# Database
+
+Database schema is located in:
+
+```
+database/schema.sql
+```
+
+It is automatically loaded when the MySQL container starts.
+
+---
+
+# Development Goals
+
+This project is intentionally built without large frameworks in order to:
+
+* better understand **backend architecture**
+* practise **clean MVC structure**
+* learn **Docker based development**
+* integrate **frontend templating with Twig**
+
+Future improvements will include:
+
+* project tagging / technologies
+* GitHub integration
+* project screenshots
+* improved frontend interface
+* search and filtering
+
+---
+
+# Author
+
+Almudena Revuelto
+Software Developer
