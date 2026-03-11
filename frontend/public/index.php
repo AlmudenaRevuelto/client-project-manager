@@ -2,15 +2,28 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Twig\Loader\FilesystemLoader;
-use Twig\Environment;
+use App\Router\Router;
+use App\Controller\HomeController;
+use App\Controller\ProjectController;
 
-// configurar Twig
-$loader = new FilesystemLoader(__DIR__ . '/../templates');
-$twig = new Environment($loader);
+$router = new Router();
 
-// renderizar template de prueba
-echo $twig->render('test.twig', [
-    'title' => 'Twig funcionando',
-    'message' => 'Si ves esto, Twig funciona correctamente 🚀'
-]);
+$homeController = new HomeController();
+$projectController = new ProjectController();
+
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
+
+$uri = rtrim($uri, '/') ?: '/';
+
+/*
+|--------------------------------------------------------------------------
+| Routes
+|--------------------------------------------------------------------------
+*/
+
+$router->get('/', [$homeController, 'index']);
+$router->get('/projects', [$projectController, 'list']);
+$router->get('/projects/{id}', [$projectController, 'show']);
+
+$router->dispatch($uri, $method);
