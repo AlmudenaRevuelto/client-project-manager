@@ -1,16 +1,18 @@
 <?php
 
 namespace Backend\Service;
+
 use Backend\Repository\ClientRepository;
 use Backend\Model\Client;
+use InvalidArgumentException;
 
 class ClientService
 {
     private ClientRepository $clientRepository;
 
-    public function __construct()
+    public function __construct(?ClientRepository $clientRepository = null)
     {
-        $this->clientRepository = new ClientRepository();
+        $this->clientRepository = $clientRepository ?? new ClientRepository();
     }
 
     /**
