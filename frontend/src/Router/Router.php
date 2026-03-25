@@ -8,8 +8,13 @@ class Router
 
     public function get(string $path, callable $handler): void
     {
+        $this->add('GET', $path, $handler);
+    }
+
+    public function add(string $method, string $path, callable $handler): void
+    {
         $this->routes[] = [
-            'method' => 'GET',
+            'method' => strtoupper($method),
             'path' => $path,
             'handler' => $handler
         ];

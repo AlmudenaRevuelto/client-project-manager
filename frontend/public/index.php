@@ -23,7 +23,7 @@ $uri = rtrim($uri, '/') ?: '/';
 */
 
 $router->get('/', [$homeController, 'index']);
-$router->get('/projects', [$projectController, 'list']);
 $router->get('/projects/{id}', [$projectController, 'show']);
+$router->add('GET', '/projects', [$projectController, 'index']);
 
 $router->dispatch($uri, $method);

@@ -2,19 +2,19 @@
 
 namespace Frontend\Controller;
 
-use Frontend\Service\ApiService;
 use Frontend\Core\View;
+use Frontend\Service\GithubService;
 
 class HomeController
 {
     public function index()
     {
-        $api = new ApiService();
+        $github = new GithubService();
 
-        $projects = $api->getProjects();
+        $user = $github->getUser('AlmudenaRevuelto');
 
-        View::render('home/index.twig', [
-            'projects' => $projects
+        return View::render('home/index.twig', [
+            'user' => $user
         ]);
     }
 }

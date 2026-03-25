@@ -5,17 +5,33 @@ Home | Developer Portfolio
 {% endblock %}
 
 {% block content %}
-
-<h2>My Projects</h2>
-
-<div class="projects-grid">
-
-    {% for project in projects %}
-        {% include "components/project-card.twig" with { project: project } %}
-    {% else %}
-        <p>No projects available.</p>
-    {% endfor %}
-
-</div>
-
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="profile-card">
+            <img src="{{ user.avatar_url }}" alt="{{ user.name }}" class="avatar">
+            <div class="profile-info">
+                <h1>{{ user.name }}</h1>
+                <p class="bio">{{ user.bio }}</p>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-value">{{ user.public_repos }}</span>
+                        <span class="stat-label">Repos públicos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">{{ user.followers }}</span>
+                        <span class="stat-label">Seguidores</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">{{ user.following }}</span>
+                        <span class="stat-label">Siguiendo</span>
+                    </div>
+                </div>
+                <a href="{{ user.html_url }}" target="_blank" class="btn btn-primary">
+                    Ver perfil en GitHub →
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-accent"></div>
+</section>
 {% endblock %}

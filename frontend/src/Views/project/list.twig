@@ -12,6 +12,8 @@ Projects | Developer Portfolio
 
     {% for project in projects %}
         {% include "components/project-card.twig" with { project: project } %}
+    {% else %}
+        <p>No projects available.</p>
     {% endfor %}
 
 </div>

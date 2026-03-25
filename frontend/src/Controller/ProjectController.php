@@ -7,6 +7,17 @@ use Frontend\Core\View;
 
 class ProjectController
 {
+    public function index()
+    {
+        $api = new ApiService();
+
+        $projects = $api->getProjects();
+
+        View::render('project/list.twig', [
+            'projects' => $projects
+        ]);
+    }
+
     public function list()
     {
         $api = new ApiService();
